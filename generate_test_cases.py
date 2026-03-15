@@ -1,0 +1,297 @@
+import subprocess
+import sys
+import os
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+    import pandas as pd
+except ImportError:
+    install('pandas')
+    import pandas as pd
+
+try:
+    import openpyxl
+except ImportError:
+    install('openpyxl')
+    import openpyxl
+
+data = [
+    {
+        "Test Case ID": "TC_VWO_API_001",
+        "Module / Feature": "VWO Login Dashboard / Auth",
+        "Test Case Scenario": "Verify successful login and token generation with valid admin credentials",
+        "Test Case Description": "Send POST request to /auth with valid admin credentials and verify an authentication token is successfully generated.",
+        "Preconditions": "API environment is up and running. Valid admin credentials exist.",
+        "Test Steps": "1. Set endpoint to /auth\n2. Set headers: Content-Type: application/json\n3. Set payload with username and password\n4. Execute POST request\n5. Validate response code and token presence",
+        "Test Data": '{"username": "admin", "password": "password123"}',
+        "Expected Result": "HTTP Status 200 OK. Response body contains a valid alphanumeric 'token'.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Critical",
+        "Test Type": "API Testing, Smoke Testing, Functional Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/auth",
+        "HTTP Method": "POST"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_002",
+        "Module / Feature": "VWO Login Dashboard / Auth",
+        "Test Case Scenario": "Verify login failure with invalid username",
+        "Test Case Description": "Attempt to authenticate using an invalid username and valid password.",
+        "Preconditions": "API environment is up and running.",
+        "Test Steps": "1. Set endpoint to /auth\n2. Set payload with invalid username\n3. Execute POST request",
+        "Test Data": '{"username": "invalid_admin", "password": "password123"}',
+        "Expected Result": "HTTP Status 200 OK with reason 'Bad credentials' in body, or appropriate 401 Unauthorized status.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Major",
+        "Test Type": "Negative Testing, Security Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/auth",
+        "HTTP Method": "POST"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_003",
+        "Module / Feature": "VWO Login Dashboard / Auth",
+        "Test Case Scenario": "Verify login failure with empty credentials",
+        "Test Case Description": "Attempt to authenticate providing an empty JSON body.",
+        "Preconditions": "API environment is up and running.",
+        "Test Steps": "1. Set endpoint to /auth\n2. Set empty JSON payload {}\n3. Execute POST request",
+        "Test Data": '{}',
+        "Expected Result": "HTTP Status 400 Bad Request or handled 200 'Bad credentials'.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Minor",
+        "Test Type": "Boundary Testing, Negative Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/auth",
+        "HTTP Method": "POST"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_004",
+        "Module / Feature": "Booking System / Retrieve Bookings",
+        "Test Case Scenario": "Retrieve all booking IDs successfully",
+        "Test Case Description": "Fetch all the existing booking IDs using GET method.",
+        "Preconditions": "API environment is running and contains at least one booking.",
+        "Test Steps": "1. Set endpoint to /booking\n2. Send GET request",
+        "Test Data": "N/A",
+        "Expected Result": "HTTP Status 200 OK. Response returns an array of booking objects containing 'bookingid'.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Major",
+        "Test Type": "Functional Testing, API Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "GET"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_005",
+        "Module / Feature": "Booking System / Retrieve Bookings",
+        "Test Case Scenario": "Filter bookings by first name and last name",
+        "Test Case Description": "Verify that query parameters 'firstname' and 'lastname' correctly filter the booking IDs.",
+        "Preconditions": "API environment is running. A booking with the specified name exists.",
+        "Test Steps": "1. Set endpoint to /booking?firstname=sally&lastname=brown\n2. Send GET request",
+        "Test Data": "Query: ?firstname=sally&lastname=brown",
+        "Expected Result": "HTTP Status 200 OK. Response contains only booking IDs matching the provided name.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Minor",
+        "Test Type": "Functional Testing, Integration Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "GET"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_006",
+        "Module / Feature": "Booking System / Retrieve Bookings",
+        "Test Case Scenario": "Retrieve a specific booking by valid ID",
+        "Test Case Description": "Fetch the details of a single booking using a valid booking ID.",
+        "Preconditions": "A valid booking ID exists in the system.",
+        "Test Steps": "1. Set endpoint to /booking/:id\n2. Replace :id with a valid valid integer\n3. Set headers Accept: application/json\n4. Execute GET request",
+        "Test Data": "id=1",
+        "Expected Result": "HTTP Status 200 OK. Response contains booking details: firstname, lastname, totalprice, depositpaid, bookingdates.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Critical",
+        "Test Type": "Functional Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking/:id",
+        "HTTP Method": "GET"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_007",
+        "Module / Feature": "Booking System / Create Booking",
+        "Test Case Scenario": "Create a new booking successfully",
+        "Test Case Description": "Verify that a new booking can be created with valid JSON payload payload.",
+        "Preconditions": "API is accessible.",
+        "Test Steps": "1. Set endpoint to /booking\n2. Set Payload with firstname, lastname, totalprice, depositpaid, bookingdates (checkin, checkout)\n3. Set Accept/Content-Type to application/json\n4. Execute POST request",
+        "Test Data": '{"firstname":"Jim","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}',
+        "Expected Result": "HTTP Status 200 OK. Response returns the created booking details along with a new 'bookingid'.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Critical",
+        "Test Type": "System Testing, API Testing, Integration Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "POST"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_008",
+        "Module / Feature": "Booking System / Create Booking",
+        "Test Case Scenario": "Attempt to create a booking with missing required fields",
+        "Test Case Description": "Send a POST request lacking mandatory fields like 'totalprice'.",
+        "Preconditions": "API is accessible.",
+        "Test Steps": "1. Set endpoint to /booking\n2. Provide payload missing 'totalprice'\n3. Execute POST request",
+        "Test Data": '{"firstname":"Jim","lastname":"Brown","depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"}}',
+        "Expected Result": "HTTP Status 500 Internal Server Error or 400 Bad Request.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Major",
+        "Test Type": "Negative Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "POST"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_009",
+        "Module / Feature": "Booking System / Update Booking",
+        "Test Case Scenario": "Fully update an existing booking using PUT",
+        "Test Case Description": "Update all fields for a specific booking ID. Requires auth token.",
+        "Preconditions": "A valid booking ID exists. Valid auth token is available.",
+        "Test Steps": "1. Call /auth to get token\n2. Set endpoint to /booking/:id\n3. Set Cookie header: token=<token_value>\n4. Set payload with updated booking details\n5. Execute PUT request",
+        "Test Data": '{"firstname":"James","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}',
+        "Expected Result": "HTTP Status 200 OK. Response body matches the updated payload configuration.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Major",
+        "Test Type": "Functional Testing, Integration Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking/:id",
+        "HTTP Method": "PUT"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_010",
+        "Module / Feature": "Booking System / Update Booking",
+        "Test Case Scenario": "Verify PUT request fails without Authentication",
+        "Test Case Description": "Attempt to update an existing booking without providing an auth token or Basic auth.",
+        "Preconditions": "A valid booking ID exists.",
+        "Test Steps": "1. Set endpoint to /booking/:id\n2. Ensure no Authorization or Cookie header is set\n3. Execute PUT request with valid payload",
+        "Test Data": '{"firstname":"James","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}',
+        "Expected Result": "HTTP Status 403 Forbidden. Booking is not updated.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Critical",
+        "Test Type": "Security Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking/:id",
+        "HTTP Method": "PUT"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_011",
+        "Module / Feature": "Booking System / Update Booking",
+        "Test Case Scenario": "Partially update booking details using PATCH",
+        "Test Case Description": "Update only firstname and lastname of an existing booking using PATCH method.",
+        "Preconditions": "Valid booking ID exists. Valid auth token is available.",
+        "Test Steps": "1. Call /auth to generate token\n2. Set endpoint to /booking/:id\n3. Set Cookie header using token\n4. Set JSON payload with firstname and lastname\n5. Execute PATCH request",
+        "Test Data": '{"firstname":"James","lastname":"Brown"}',
+        "Expected Result": "HTTP Status 200 OK. Response reflects updated firstname and lastname while keeping other data intact.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Major",
+        "Test Type": "Functional Testing, Regression Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking/:id",
+        "HTTP Method": "PATCH"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_012",
+        "Module / Feature": "Booking System / Delete Booking",
+        "Test Case Scenario": "Delete a valid booking successfully",
+        "Test Case Description": "Delete a booking ID using the DELETE method with appropriate authorization.",
+        "Preconditions": "Valid booking ID exists. Valid auth token is available.",
+        "Test Steps": "1. Call /auth to generate token\n2. Set endpoint to /booking/:id\n3. Set Cookie header with valid token\n4. Execute DELETE request\n5. Execute GET request on same ID to verify deletion",
+        "Test Data": "id=1",
+        "Expected Result": "HTTP Status 201 Created and subsequent GET request returns 404 Not Found.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "High",
+        "Severity": "Critical",
+        "Test Type": "Functional Testing, Regression Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking/:id",
+        "HTTP Method": "DELETE"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_013",
+        "Module / Feature": "Booking System / Health Check",
+        "Test Case Scenario": "Verify API health/ping endpoint",
+        "Test Case Description": "Ensure the API is up and running by pinging the healthcheck endpoint.",
+        "Preconditions": "None",
+        "Test Steps": "1. Set endpoint to /ping\n2. Execute GET request",
+        "Test Data": "N/A",
+        "Expected Result": "HTTP Status 201 Created.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Low",
+        "Severity": "Minor",
+        "Test Type": "Sanity Testing, Performance Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/ping",
+        "HTTP Method": "GET"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_014",
+        "Module / Feature": "Booking System / Performance",
+        "Test Case Scenario": "Verify API response time under normal load",
+        "Test Case Description": "Check if fetching all bookings returns within acceptable enterprise limits (< 2 seconds).",
+        "Preconditions": "API is online.",
+        "Test Steps": "1. Set endpoint to /booking\n2. Send GET request\n3. Measure response completion time",
+        "Test Data": "N/A",
+        "Expected Result": "Response time should be under 2000 milliseconds.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Medium",
+        "Severity": "Minor",
+        "Test Type": "Performance Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "GET"
+    },
+    {
+        "Test Case ID": "TC_VWO_API_015",
+        "Module / Feature": "Booking System / Create Booking",
+        "Test Case Scenario": "Verify create booking with invalid dates formatting",
+        "Test Case Description": "Provide malformed date strings in checkin/checkout fields and verify rejection.",
+        "Preconditions": "API is accessible.",
+        "Test Steps": "1. Set endpoint to /booking\n2. Set payload with invalid date formats (e.g., DD-MM-YYYY instead of YYYY-MM-DD)\n3. Execute POST request",
+        "Test Data": '{"firstname":"Jim","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"01-01-2018","checkout":"01-01-2019"}}',
+        "Expected Result": "API returns 500 Internal Server Error or 400 Bad Request indicating invalid format.",
+        "Actual Result": "",
+        "Status": "Not Run",
+        "Priority": "Low",
+        "Severity": "Minor",
+        "Test Type": "Boundary Testing, Negative Testing",
+        "Automation Candidate (Yes or No)": "Yes",
+        "API Endpoint": "/booking",
+        "HTTP Method": "POST"
+    }
+]
+
+df = pd.DataFrame(data)
+output_path = r"d:\AI Tester\Project_04_Test_Case_Generator_Excel_RICE_POT\Enterprise_QA_Test_Cases_VWO_RestfulBooker.xlsx"
+df.to_excel(output_path, index=False)
+print(f"Test cases successfully exported to {output_path}")
+
