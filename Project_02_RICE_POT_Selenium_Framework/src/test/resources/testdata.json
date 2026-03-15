@@ -1,0 +1,12 @@
+[
+  {
+    "username": "Admin",
+    "password": "admin123",
+    "expectedTitle": "OrangeHRM"
+  },
+  {
+    "username": "invalid_user",
+    "password": "wrong_password",
+    "expectedError": "Invalid credentials"
+  }
+]
