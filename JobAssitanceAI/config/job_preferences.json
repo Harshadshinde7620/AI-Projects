@@ -1,0 +1,53 @@
+{
+  "candidate": {
+    "name": "Harshad Shinde",
+    "role_label": "QA_resume"
+  },
+
+  "search": {
+    "job_titles": [
+      "Automation tester",
+      "Tester",
+      "QA tester",
+      "QA automation tester"
+    ],
+    "keywords": [
+      "Selenium", "Java", "Cucumber", "BDD", "TestNG",
+      "Rest Assured", "API Testing", "Jenkins", "Maven"
+    ],
+    "locations": [
+      "Nagpur",
+      "Pune",
+      "Mumbai",
+      "Remote",
+      "Hybrid"
+    ],
+    "experience_years": {
+      "min": 5,
+      "max": 10
+    },
+    "salary_lpa": {
+      "min": 12,
+      "max": 25
+    },
+    "job_type": ["Full Time"],
+    "work_mode": ["Remote", "Hybrid", "On-site"],
+    "exclude_companies": [],
+    "max_jobs_per_run": 10
+  },
+
+  "auto_apply": {
+    "enabled": true,
+    "portals": ["linkedin", "naukri"],
+    "require_confirmation_before_apply": true,
+    "linkedin_easy_apply_only": true,
+    "cover_letter_required": true,
+    "skip_if_already_applied": true
+  },
+
+  "filters": {
+    "min_ats_score_to_apply": 7.0,
+    "skip_if_jd_too_short_chars": 200,
+    "blacklisted_keywords_in_jd": ["unpaid", "internship", "fresher only"]
+  }
+}

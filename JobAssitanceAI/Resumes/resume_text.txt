@@ -1,0 +1,86 @@
+Harshad Chandrakant Shinde  
+harshadshinde.work@gmail.com | +91 -7620215494 | Pune, India | LinkedIn  | GitHub  
+Professional Summary  
+QA Automation Engineer with 5+ years of experience in web and API testing, specialising  in 
+Java -based automation frameworks using Selenium WebDriver, TestNG , and modern QA 
+practices. Proven ability to design scalable test frameworks, improve regression efficiency, 
+and collaborate with Agile teams to deliver high‑quality software. Recently focused on 
+AI‑assisted QA  by building an open‑source test case generator and a Selenium automation 
+framework powered by a local LLM to accelerate intelligent test generation. Strong focus on 
+automation strategy, quality engineering, and continuous improvement.  
+Key Achievements  
+• Reduced regression execution time by 60% by implementing a Selenium + TestNG 
+automation framework.  
+• Automated critical booking and payment workflows , improving release validation 
+speed.  
+• Designed reusable automation components enabling faster test script development.  
+• Improved defect detection by implementing structured test case design and API 
+validations.  
+Technical Skills  
+Programming : Java  
+Automation : Selenium WebDriver, TestNG, JUnit  
+API Testing : Postman, REST API validation  
+Framework  Design : Hybrid Framework, Data‑Driven Framework, Page Object Model 
+(POM)  
+Tools : Git, Maven, JIRA  
+Testing  Types : Functional, Regression, UAT, API Testing, Cross‑Browser Testing  
+AI‑Assisted QA : LLM‑based test generation, prompt engineering for automation . 
+ 
+Professional Experience  
+XENNEO  Tech Private Limited  — QA Engineer (Manual & Automation)  
+Dec 2019 – Present  
+• Architected and implemented scalable Selenium automation frameworks using Java, 
+TestNG, and Page Object Model.  
+• Automated booking, onboarding, and payment workflows across multiple web 
+platforms.  
+• Performed API validation and testing using Postman.  
+• Collaborated with developers for root cause analysis and defect resolution.  
+• Participated in Agile ceremonies including sprint planning, stand‑ups, and 
+retrospectives.  
+ 
+Projects : 
+Artist Booking Platform (NXTGIG)  
+• Designed and implemented automation frameworks using Selenium WebDriver, 
+Java, and TestNG, improving regression efficiency by 60%.  
+• Automated test scripts for booking workflows, onboarding, and payment modules.  
+• Conducted API testing with Postman, validating data flow across modules.  
+• Debugged automation failures and collaborated with developers for root cause 
+analysis.  
+• Performed end -to-end manual testing to validate business -critical workflows.  
+Ride -Booking App (Trrvlo)  
+• Conducted manual and automation testing of booking workflows and payment 
+gateways.  
+• Created automation test cases in Selenium & Java, ensuring faster test cycles.  
+• Performed UAT, regression, and functional testing, ensuring quality before releases.  
+Online Cookie -Selling Platform (Classic Cookie)  
+• Automated cart and checkout functionality with Selenium WebDriver & Java, 
+reducing manual test effort.  
+• Conducted usability and functional testing to validate customer journeys.  
+• Reported bugs in JIRA and ensured fixes were properly verified.  
+ 
+Additional Contributions:  
+• Transitioned successfully from design to QA, demonstrating adaptability and 
+continuous learning.  
+• Provided UI/UX feedback leveraging design background, improving user experience.  
+• Active participant in Agile ceremonies (daily stand -ups, sprint planning, 
+retrospectives).  
+AI Testing & Automation Projects  
+Open Source AI Test Case Generator  
+• Built an AI‑powered tool using a local LLM to generate structured QA test cases from 
+requirements.  
+• Automatically produces positive, negative, and edge test scenarios.  
+• Exports test cases into Excel‑ready QA templates.  
+AI‑Powered Selenium Automation Framework  
+• Developed a Selenium automation framework integrated with a local LLM.  
+• AI assists in generating Selenium locators, test steps, and BDD scenarios.  
+• Built using Java, Selenium WebDriver, and TestNG with Page Object Model architecture.  
+GitHub AI QA Portfolio  
+• AI Test Case Generator – Open‑source project demonstrating automated test case 
+generation using LLM.  
+• AI‑Assisted Selenium Framework – Automation framework capable of generating 
+Selenium scripts using AI prompts.  
+• Repository contains sample frameworks, test cases, and QA automation utilities.  
+Education  
+Bachelor of Engineering (Mechanical) – Savitribai Phule Pune University, 2017  
+HSC – Maharashtra State Board, 2012  
+SSC – Maharashtra State Board, 2010  

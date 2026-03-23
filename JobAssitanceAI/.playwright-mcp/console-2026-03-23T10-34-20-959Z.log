@@ -1,0 +1,4 @@
+[    2268ms] [WARNING] [GPT] Invalid arguments: PubAdsService.setTargeting('Profile-Marital', null).
+https://goo.gle/gpt-message#96 @ https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202603160101/pubads_impl.js:18
+[  176623ms] [ERROR] Attestation check for Attribution Reporting on https://www.google-analytics.com failed. @ https://www.naukri.com/job-listings-qa-automation-tester-manoramaonline-bengaluru-3-to-8-years-160326501528:0
+[  176627ms] [ERROR] Attestation check for Attribution Reporting on https://www.google-analytics.com failed. @ https://www.naukri.com/job-listings-qa-automation-tester-manoramaonline-bengaluru-3-to-8-years-160326501528:0

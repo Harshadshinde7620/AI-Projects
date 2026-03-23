@@ -1,0 +1,13 @@
+# Existing
+anthropic>=0.25.0
+python-docx>=1.1.0
+PyPDF2>=3.0.0
+reportlab>=4.0.0
+
+# NEW — Browser Automation
+playwright>=1.43.0          # Modern browser automation (preferred over Selenium)
+python-dotenv>=1.0.0        # Secure .env credential loading
+cryptography>=42.0.0        # Encrypt stored credentials
+
+# After install, also run:
+# playwright install chromium
