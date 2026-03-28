@@ -1,0 +1,21 @@
+# Node/Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+
+# Project specific
+.tmp/
+deliverables/*.docx
+!deliverables/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
